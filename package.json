@@ -4,10 +4,8 @@
   "description": "Convert Image to Text",
   "main": "index.js",
   "scripts": {
-    "test": "index.js"
+    "start": "node index.js"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "node-tesseract": "^0.2.7"
   }
