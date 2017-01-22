@@ -1,0 +1,14 @@
+{
+  "name": "Image to Text",
+  "version": "4.3.0",
+  "description": "Convert Image to Text",
+  "main": "index.js",
+  "scripts": {
+    "test": "index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-tesseract": "^0.2.7",
+  }
+}
