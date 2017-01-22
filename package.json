@@ -1,5 +1,5 @@
 {
-  "name": "Image to Text",
+  "name": "OCR Text",
   "version": "4.3.0",
   "description": "Convert Image to Text",
   "main": "index.js",
