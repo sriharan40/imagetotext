@@ -36,14 +36,14 @@ app.get('/', function(req, res) {
 // Image is uploaded to req.file.path
 app.post('/upload', upload.single('image'), function(req, res, next) {
 
-  // Choose what the Vision API should detect
-  // Choices are: faces, landmarks, labels, logos, properties, safeSearch, texts
-  var types = ['labels'];
+// Choose what the Vision API should detect
+// Choices are: faces, landmarks, labels, logos, properties, safeSearch, texts
+var types = ['labels'];
 
-  console.log(req.file.path);
+console.log("Path: "+req.file.path);
   
-  // Send the image to the Cloud Vision API
-  vision.detect(req.file.path, types, function(err, detections, apiResponse) {
+// Send the image to the Cloud Vision API
+vision.detect(req.file.path, types, function(err, detections, apiResponse) {
     if (err) {
       res.end('Cloud Vision Error');
     } else {
