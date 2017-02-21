@@ -11,7 +11,7 @@ const REST_PORT = (process.env.PORT || 5111);
 // Set up auth
 var gcloud = require('gcloud')({
   keyFilename: 'GoogleOCRPOC-e4b04e9203c7.json',
-  projectId: 'Image Upload'
+  projectId: 'single-planet-159413'
 });
 
 var vision = gcloud.vision();
