@@ -56,7 +56,7 @@ vision.detect(req.file.path, types, function(err, detections, apiResponse) {
       res.write('<img width=200 src="' + base64Image(req.file.path) + '"><br>');
 
       // Write out the JSON output of the Vision API
-      res.write(JSON.stringify(detections, null, 4));
+      res.write(JSON.stringify(apiResponse, null, 4));
 
       // Delete file (optional)
       fs.unlinkSync(req.file.path);
