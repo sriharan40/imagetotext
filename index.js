@@ -40,7 +40,7 @@ app.post('/upload', upload.single('image'), function(req, res, next) {
 // Choices are: faces, landmarks, labels, logos, properties, safeSearch, texts
 var types = ['text'];
 
-console.log("Req: "+JSON.stringify(req));
+console.log("Req: "+req.tostring());
   
 console.log("Path: "+req.file.path);
   
