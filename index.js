@@ -38,13 +38,14 @@ app.post('/upload', upload.single('image'), function(req, res, next) {
 
 // Choose what the Vision API should detect
 // Choices are: faces, landmarks, labels, logos, properties, safeSearch, texts
-var types = ['texts'];
+var types = ['text'];
 
 console.log("Path: "+req.file.path);
   
 // Send the image to the Cloud Vision API
 vision.detect(req.file.path, types, function(err, detections, apiResponse) {
-    if (err) {
+//vision.detectText(req.file.path, function(err, text, apiResponse) {  
+  if (err) {
       res.end('Cloud Vision Error');
     } else {
       res.writeHead(200, {
