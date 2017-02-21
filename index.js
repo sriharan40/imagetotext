@@ -1,39 +1,74 @@
 'use strict';
 
-var tesseract = require('node-tesseract');
- 
-// Recognize text of any language in any format
-tesseract.process(__dirname + '/images/image.png',function(err, text) {
-    if(err) {
-        console.error(err);
-    } else {
-        console.log(text);
-    }
-});
- 
-// Recognize German text in a single uniform block of text and set the binary path
- 
-var options = {
-    l: 'deu',
-    psm: 6,
-    binary: '/usr/local/bin/tesseract'
-};
- 
-tesseract.process(__dirname + '/images/image.png', options, function(err, text) {
-    if(err) {
-        console.error(err);
-    } else {
-        console.log(text);
-    }
+var express = require('express');
+var fs = require('fs');
+var util = require('util');
+var mime = require('mime');
+var multer = require('multer');
+var upload = multer({dest: 'uploads/'});
+
+// Set up auth
+var gcloud = require('gcloud')({
+  keyFilename: 'GoogleOCRPOC-e4b04e9203c7.json',
+  projectId: 'Image Upload'
 });
 
-/* var Tesseract = require('tesseract.js')
-var filename = 'images/image.jpg'
+var vision = gcloud.vision();
 
-Tesseract.recognize(filename)
-  .progress(function  (p) { console.log('progress', p)  })
-  .catch(err => console.error(err))
-  .then(function (result) {
-    console.log(result.text)
-    process.exit(0)
-  }) */
+var app = express();
+
+// Simple upload form
+var form = '<!DOCTYPE HTML><html><body>' +
+  "<form method='post' action='/upload' enctype='multipart/form-data'>" +
+  "<input type='file' name='image'/>" +
+  "<input type='submit' /></form>" +
+  '</body></html>';
+
+app.get('/', function(req, res) {
+  res.writeHead(200, {
+    'Content-Type': 'text/html'
+  });
+  res.end(form);
+});
+
+// Get the uploaded image
+// Image is uploaded to req.file.path
+app.post('/upload', upload.single('image'), function(req, res, next) {
+
+  // Choose what the Vision API should detect
+  // Choices are: faces, landmarks, labels, logos, properties, safeSearch, texts
+  var types = ['labels'];
+
+  // Send the image to the Cloud Vision API
+  vision.detect(req.file.path, types, function(err, detections, apiResponse) {
+    if (err) {
+      res.end('Cloud Vision Error');
+    } else {
+      res.writeHead(200, {
+        'Content-Type': 'text/html'
+      });
+      res.write('<!DOCTYPE HTML><html><body>');
+
+      // Base64 the image so we can display it on the page
+      res.write('<img width=200 src="' + base64Image(req.file.path) + '"><br>');
+
+      // Write out the JSON output of the Vision API
+      res.write(JSON.stringify(detections, null, 4));
+
+      // Delete file (optional)
+      fs.unlinkSync(req.file.path);
+
+      res.end('</body></html>');
+    }
+  });
+});
+
+app.listen(8080);
+console.log('Server Started');
+
+// Turn image into Base64 so we can display it easily
+
+function base64Image(src) {
+  var data = fs.readFileSync(src).toString('base64');
+  return util.format('data:%s;base64,%s', mime.lookup(src), data);
+}
