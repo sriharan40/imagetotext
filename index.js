@@ -63,8 +63,11 @@ app.post('/upload', upload.single('image'), function(req, res, next) {
   });
 });
 
-app.listen(8080);
-console.log('Server Started');
+app.listen(REST_PORT, () => {
+    console.log('Rest service ready on port ' + REST_PORT);
+});
+
+//console.log('Server Started');
 
 // Turn image into Base64 so we can display it easily
 
