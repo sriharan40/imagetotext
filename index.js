@@ -6,6 +6,7 @@ var util = require('util');
 var mime = require('mime');
 var multer = require('multer');
 var upload = multer({dest: 'uploads/'});
+const REST_PORT = (process.env.PORT || 5111);
 
 // Set up auth
 var gcloud = require('gcloud')({
