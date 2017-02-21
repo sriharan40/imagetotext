@@ -40,6 +40,8 @@ app.post('/upload', upload.single('image'), function(req, res, next) {
 // Choices are: faces, landmarks, labels, logos, properties, safeSearch, texts
 var types = ['text'];
 
+console.log("Req: "+req);
+  
 console.log("Path: "+req.file.path);
   
 // Send the image to the Cloud Vision API
