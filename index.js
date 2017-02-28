@@ -26,40 +26,11 @@ var form = '<!DOCTYPE HTML><html><body>' +
   '</body></html>';
 
 app.get('/', function(req, res) {
-  //res.writeHead(200, {
-  //  'Content-Type': 'text/html'
-  //});
-  //res.end(form);
-
-var types = ['text'];
-// Send the image to the Cloud Vision API
-vision.detect("https://fb-s-d-a.akamaihd.net/h-ak-xlf1/v/t34.0-0/p280x280/16933806_1567430053285164_1662632985_n.jpg?oh=f53bef8f4b1ab842305ca96f1cbfa0b1&oe=58B77C3F&__gda__=1488486318_8c9f1b47446097848894120d132cd76e", types, function(err, detections, apiResponse) {
-//vision.detectText(req.file.path, function(err, text, apiResponse) {  
-  if (err) {
-      res.end('Cloud Vision Error');
-    } else {
-      res.writeHead(200, {
-        'Content-Type': 'text/html'
-      });
-      res.write('<!DOCTYPE HTML><html><body>');
-
-      // Base64 the image so we can display it on the page
-      res.write('<img width=200 src="' + base64Image(req.file.path) + '">');
-
-      //var jsonOutput = JSON.parse(apiResponse);
-      var texts = JSON.stringify(apiResponse.responses[0].textAnnotations[0].description);
-      var textsHtmlwithoutQuotes = texts.replace(/"/g, '');
-      var textWithNextline = textsHtmlwithoutQuotes.replace(/\\n/g, '</br>');
-      console.log("Check texts ::>>" + textWithNextline);
-      // Write out the JSON output of the Vision API
-       //res.write(JSON.stringify(jsonObj.textAnnotations, null, 4));
-      
-      res.write('<p>' + textWithNextline + '</p>', null, 4);
-      
-      res.end('</body></html>');      
-    }
+  res.writeHead(200, {
+    'Content-Type': 'text/html'
+  });
+  res.end(form);
 });
-    });
 
 // Get the uploaded image
 // Image is uploaded to req.file.path
