@@ -9,7 +9,7 @@ var upload = multer({dest: 'uploads/'});
 const REST_PORT = (process.env.PORT || 5111);
 
 // Set up auth
-var gcloud = require('gcloud')({
+var gcloud = require('google-cloud')({
   keyFilename: 'GoogleOCRPOC-e4b04e9203c7.json',
   projectId: 'single-planet-159413'
 });
