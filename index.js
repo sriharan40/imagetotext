@@ -8,6 +8,67 @@ var multer = require('multer');
 var upload = multer({dest: 'uploads/'});
 const REST_PORT = (process.env.PORT || 5111);
 
+var params=function(req){
+  var q=req.url.split('?'),result={};
+  if(q.length>=2){
+      q[1].split('&').forEach((item)=>{
+           try {
+             result[item.split('=')[0]]=item.split('=')[1];
+           } catch (e) {
+             result[item.split('=')[0]]='';
+           }
+      })
+  }
+  return result;
+}
+
+req.params=params(req);
+
+var image_url = req.params.image_url;
+
+if(image_url)
+{
+	
+var types = ['text'];
+
+//console.log("Req: "+req.body.toString());
+  
+console.log("Path: "+image_url);
+  
+// Send the image to the Cloud Vision API
+vision.detect(image_url, types, function(err, detections, apiResponse) {
+//vision.detectText(req.file.path, function(err, text, apiResponse) {  
+  if (err) {
+      res.end('Cloud Vision Error');
+    } else {
+      res.writeHead(200, {
+        'Content-Type': 'text/html'
+      });
+      res.write('<!DOCTYPE HTML><html><body>');
+
+      // Base64 the image so we can display it on the page
+      res.write('<img width=200 src="' + image_url + '">');
+
+      //var jsonOutput = JSON.parse(apiResponse);
+      var texts = JSON.stringify(apiResponse.responses[0].textAnnotations[0].description);
+      var textsHtmlwithoutQuotes = texts.replace(/"/g, '');
+      var textWithNextline = textsHtmlwithoutQuotes.replace(/\\n/g, '</br>');
+      console.log("Check texts ::>>" + textWithNextline);
+      // Write out the JSON output of the Vision API
+       //res.write(JSON.stringify(jsonObj.textAnnotations, null, 4));
+      
+      res.write('<p>' + textWithNextline + '</p>', null, 4);
+
+      // Delete file (optional)
+      fs.unlinkSync(image_url);
+
+      res.end('</body></html>');
+    }	
+
+});
+
+}
+
 // Set up auth
 var gcloud = require('google-cloud')({
   keyFilename: 'GoogleOCRPOC-e4b04e9203c7.json',
