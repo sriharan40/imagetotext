@@ -18,40 +18,17 @@ var vision = gcloud.vision();
 
 var app = express();
 
-// Simple upload form
-var form = '<!DOCTYPE HTML><html><body>' +
-  "<form method='post' action='/upload' enctype='multipart/form-data'>" +
-  "<input type='file' name='image'/>" +
-  "<input type='submit' /></form>" +
-  '</body></html>';
+app.post('/', function(req, res){
 
-app.get('/', function(req, res) {
-
-var params=function(req){
-  var q=req.url.split('?'),result={};
-  if(q.length>=2){
-      q[1].split('&').forEach((item)=>{
-           try {
-             result[item.split('=')[0]]=item.split('=')[1];
-           } catch (e) {
-             result[item.split('=')[0]]='';
-           }
-      })
-  }
-  return result;
-}
-
-req.params=params(req);
-
-var image_url = req.params.image_url;
+var image_url = req.body.image_url;
 
 if(image_url)
 {
-var image_url = (image_url).replace(/%3F/g, '?');
+//var image_url = (image_url).replace(/%3F/g, '?');
 	
-var image_url = (image_url).replace(/%3D/g, '=');
+//var image_url = (image_url).replace(/%3D/g, '=');
 
-var image_url = (image_url).replace(/%3E/g, '&');
+//var image_url = (image_url).replace(/%3E/g, '&');
 
 console.log("Path: "+image_url);
 	
@@ -87,16 +64,24 @@ vision.detect(image_url, types, function(err, detections, apiResponse) {
     }	
 
 });
-
+	
 }
 
-else
-{
+});
+
+// Simple upload form
+var form = '<!DOCTYPE HTML><html><body>' +
+  "<form method='post' action='/upload' enctype='multipart/form-data'>" +
+  "<input type='file' name='image'/>" +
+  "<input type='submit' /></form>" +
+  '</body></html>';
+
+app.get('/', function(req, res) {
+
 res.writeHead(200, {
     'Content-Type': 'text/html'
   });
   res.end(form);
-}
 
 });
 
