@@ -45,15 +45,15 @@ req.params=params(req);
 
 var image_url = req.params.image_url;
 
+console.log("Path: "+image_url);
+
 if(image_url)
 {
 	
 var types = ['text'];
 
 //console.log("Req: "+req.body.toString());
-  
-console.log("Path: "+image_url);
-  
+    
 // Send the image to the Cloud Vision API
 vision.detect(image_url, types, function(err, detections, apiResponse) {
 //vision.detectText(req.file.path, function(err, text, apiResponse) {  
