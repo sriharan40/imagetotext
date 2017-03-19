@@ -45,6 +45,8 @@ req.params=params(req);
 
 var image_url = req.params.image_url;
 
+if(image_url)
+{
 var image_url = (image_url).replace(/%3F/g, '?');
 	
 var image_url = (image_url).replace(/%3D/g, '=');
@@ -52,9 +54,6 @@ var image_url = (image_url).replace(/%3D/g, '=');
 var image_url = (image_url).replace(/%3E/g, '&');
 
 console.log("Path: "+image_url);
-
-if(image_url)
-{
 	
 var types = ['text'];
 
