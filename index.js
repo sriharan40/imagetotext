@@ -45,7 +45,7 @@ req.params=params(req);
 
 var image_url = req.params.image_url;
 
-var image_url = ("" + image_url).replace(/%3E/g, '&');
+var image_url = ("" + image_url).replace(/%QE/g, '&');
 
 var image_url = ("" + image_url).replace(/%3F/g, '?');
 	
