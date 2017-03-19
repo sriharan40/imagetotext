@@ -8,6 +8,25 @@ var multer = require('multer');
 var upload = multer({dest: 'uploads/'});
 const REST_PORT = (process.env.PORT || 5111);
 
+// Set up auth
+var gcloud = require('google-cloud')({
+  keyFilename: 'GoogleOCRPOC-e4b04e9203c7.json',
+  projectId: 'single-planet-159413'
+});
+
+var vision = gcloud.vision();
+
+var app = express();
+
+// Simple upload form
+var form = '<!DOCTYPE HTML><html><body>' +
+  "<form method='post' action='/upload' enctype='multipart/form-data'>" +
+  "<input type='file' name='image'/>" +
+  "<input type='submit' /></form>" +
+  '</body></html>';
+
+app.get('/', function(req, res) {
+
 var params=function(req){
   var q=req.url.split('?'),result={};
   if(q.length>=2){
@@ -69,28 +88,14 @@ vision.detect(image_url, types, function(err, detections, apiResponse) {
 
 }
 
-// Set up auth
-var gcloud = require('google-cloud')({
-  keyFilename: 'GoogleOCRPOC-e4b04e9203c7.json',
-  projectId: 'single-planet-159413'
-});
-
-var vision = gcloud.vision();
-
-var app = express();
-
-// Simple upload form
-var form = '<!DOCTYPE HTML><html><body>' +
-  "<form method='post' action='/upload' enctype='multipart/form-data'>" +
-  "<input type='file' name='image'/>" +
-  "<input type='submit' /></form>" +
-  '</body></html>';
-
-app.get('/', function(req, res) {
-  res.writeHead(200, {
+else
+{
+res.writeHead(200, {
     'Content-Type': 'text/html'
   });
   res.end(form);
+}
+
 });
 
 // Get the uploaded image
