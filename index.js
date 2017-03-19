@@ -84,9 +84,6 @@ vision.detect(image_url, types, function(err, detections, apiResponse) {
       
       res.write('<p>' + textWithNextline + '</p>', null, 4);
 
-      // Delete file (optional)
-      fs.unlinkSync(image_url);
-
       res.end('</body></html>');
     }	
 
