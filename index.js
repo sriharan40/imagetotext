@@ -20,7 +20,12 @@ var app = express();
 
 app.post('/', function(req, res){
 
+console.log(JSON.stringify(req));
+
+console.log(JSON.stringify(req.body));
+
 var image_url = req.body.image_url;
+
 
 if(image_url)
 {
