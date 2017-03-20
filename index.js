@@ -19,7 +19,7 @@ var vision = gcloud.vision();
 
 var app = express();
 
-app.use(express.bodyParser());
+app.use(bodyParser.json());
 
 app.post('/', function(req, res){
 
