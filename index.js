@@ -43,22 +43,26 @@ vision.detect(image_url, types, function(err, detections, apiResponse) {
       res.writeHead(200, {
         'Content-Type': 'text/html'
       });
-      res.write('<!DOCTYPE HTML><html><body>');
+      //res.write('<!DOCTYPE HTML><html><body>');
 
       // Base64 the image so we can display it on the page
-      res.write('<img width=200 src="' + image_url + '">');
+      //res.write('<img width=200 src="' + image_url + '">');
 
       //var jsonOutput = JSON.parse(apiResponse);
       var texts = JSON.stringify(apiResponse.responses[0].textAnnotations[0].description);
       var textsHtmlwithoutQuotes = texts.replace(/"/g, '');
-      var textWithNextline = textsHtmlwithoutQuotes.replace(/\\n/g, '</br>');
+      //var textWithNextline = textsHtmlwithoutQuotes.replace(/\\n/g, '</br>');
       console.log("Check texts ::>>" + textWithNextline);
       // Write out the JSON output of the Vision API
        //res.write(JSON.stringify(jsonObj.textAnnotations, null, 4));
       
-      res.write('<p>' + textWithNextline + '</p>', null, 4);
+      //res.write('<p>' + textWithNextline + '</p>', null, 4);
 
-      res.end('</body></html>');
+      //res.end('</body></html>');
+	  
+	  res.write(textWithNextline, null, 4);
+
+      res.end();
     }	
 
 });
