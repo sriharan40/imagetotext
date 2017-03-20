@@ -20,6 +20,11 @@ var app = express();
 
 app.post('/', function(req, res){
 
+
+console.log(req);
+
+console.log(req.body);
+
 console.log(JSON.stringify(req));
 
 console.log(JSON.stringify(req.body));
