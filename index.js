@@ -3,6 +3,7 @@
 var express = require('express');
 var fs = require('fs');
 var util = require('util');
+var bodyParser = require("body-parser");
 var mime = require('mime');
 var multer = require('multer');
 var upload = multer({dest: 'uploads/'});
@@ -17,6 +18,8 @@ var gcloud = require('google-cloud')({
 var vision = gcloud.vision();
 
 var app = express();
+
+app.use(express.bodyParser());
 
 app.post('/', function(req, res){
 
