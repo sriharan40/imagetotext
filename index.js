@@ -38,7 +38,7 @@ var types = ['text'];
 vision.detect(image_url, types, function(err, detections, apiResponse) {
 //vision.detectText(req.file.path, function(err, text, apiResponse) {  
   if (err) {
-      res.end('Cloud Vision Error'+err);
+      res.end('Cloud Vision Error '+err);
     } else {
       res.writeHead(200, {
         'Content-Type': 'text/html'
@@ -103,7 +103,7 @@ console.log("Path: "+req.file.path);
 vision.detect(req.file.path, types, function(err, detections, apiResponse) {
 //vision.detectText(req.file.path, function(err, text, apiResponse) {  
   if (err) {
-      res.end('Cloud Vision Error'+err);
+      res.end('Cloud Vision Error '+err);
     } else {
       res.writeHead(200, {
         'Content-Type': 'text/html'
