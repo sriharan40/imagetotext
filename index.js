@@ -3,7 +3,7 @@
 var express = require('express');
 var fs = require('fs');
 var util = require('util');
-var bodyParser = require("body-parser");
+var bodyParser = require('body-parser');
 var mime = require('mime');
 var multer = require('multer');
 var upload = multer({dest: 'uploads/'});
@@ -25,14 +25,8 @@ app.post('/', function(req, res){
 
 var image_url = req.body.image_url;
 
-
 if(image_url)
 {
-//var image_url = (image_url).replace(/%3F/g, '?');
-	
-//var image_url = (image_url).replace(/%3D/g, '=');
-
-//var image_url = (image_url).replace(/%3E/g, '&');
 
 console.log("Path: "+image_url);
 	
@@ -44,7 +38,7 @@ var types = ['text'];
 vision.detect(image_url, types, function(err, detections, apiResponse) {
 //vision.detectText(req.file.path, function(err, text, apiResponse) {  
   if (err) {
-      res.end('Cloud Vision Error');
+      res.end('Cloud Vision Error'+err);
     } else {
       res.writeHead(200, {
         'Content-Type': 'text/html'
@@ -105,7 +99,7 @@ console.log("Path: "+req.file.path);
 vision.detect(req.file.path, types, function(err, detections, apiResponse) {
 //vision.detectText(req.file.path, function(err, text, apiResponse) {  
   if (err) {
-      res.end('Cloud Vision Error');
+      res.end('Cloud Vision Error'+err);
     } else {
       res.writeHead(200, {
         'Content-Type': 'text/html'
