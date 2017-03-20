@@ -9,6 +9,7 @@
   "author": "Sriharan S",
   "dependencies": {
     "express": "^4.13.4",
+    "body-parser": "^1.15.2",    
     "google-cloud": "^0.48.0",
     "mime": "^1.3.4",
     "multer": "^1.1.0"
