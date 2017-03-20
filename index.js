@@ -23,15 +23,6 @@ app.use(bodyParser.json());
 
 app.post('/', function(req, res){
 
-
-console.log(req);
-
-console.log(req.body);
-
-console.log(JSON.stringify(req));
-
-console.log(JSON.stringify(req.body));
-
 var image_url = req.body.image_url;
 
 
