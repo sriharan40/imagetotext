@@ -61,7 +61,7 @@ vision.detect(image_url, types, function(err, detections, apiResponse) {
 
       //res.end('</body></html>');
 	  
-      res.write(text_output, null, 4);
+      res.write("\n\n".text_output, null, 4);
 
       res.end();
     }	
