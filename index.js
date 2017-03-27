@@ -51,7 +51,7 @@ vision.detect(image_url, types, function(err, detections, apiResponse) {
       //var jsonOutput = JSON.parse(apiResponse);
       var texts = JSON.stringify(apiResponse.responses[0].textAnnotations[0].description);
       var text_output = texts.replace(/\\n/g, '\n\n');	  
-      text_output = '\n\n'.text_output;	    
+      text_output = '\n\n'+text_output;   
       var textsHtmlwithoutQuotes = texts.replace(/"/g, '');
       var textWithNextline = textsHtmlwithoutQuotes.replace(/\\n/g, '</br>');
       console.log("Check texts ::>>" + textWithNextline);
