@@ -51,7 +51,7 @@ vision.detect(image_url, types, function(err, detections, apiResponse) {
       //var jsonOutput = JSON.parse(apiResponse);
       var texts = JSON.stringify(apiResponse.responses[0].textAnnotations[0].description);
       var textsHtmlwithoutQuotes = texts.replace(/"/g, '');
-      //var textWithNextline = textsHtmlwithoutQuotes.replace(/\\n/g, '</br>');
+      var textWithNextline = textsHtmlwithoutQuotes.replace(/\\n/g, '</br>');
       console.log("Check texts ::>>" + textWithNextline);
       // Write out the JSON output of the Vision API
        //res.write(JSON.stringify(jsonObj.textAnnotations, null, 4));
@@ -60,7 +60,7 @@ vision.detect(image_url, types, function(err, detections, apiResponse) {
 
       //res.end('</body></html>');
 	  
-      res.write(textsHtmlwithoutQuotes, null, 4);
+      res.write(texts, null, 4);
 
       res.end();
     }	
