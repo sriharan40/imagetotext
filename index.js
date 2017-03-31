@@ -59,15 +59,17 @@ vision.detect(image_url, types, function(err, detections, apiResponse) {
       //text_output = '\n\n'+text_output;   
 	  var arr = textWithNextline.split("</br>");
 
-      console.log("Splitted text:" + arr[8]);	  
+      console.log("Name text:" + arr[8]);	  
+
+      console.log("Address text:" + arr[10]);	  
 	  
-	  if(arr[8] != undefined && arr[8] != "" && arr[8] != "NULL")
+	  if(arr[8] != undefined && arr[8] != "" && arr[8] != "NULL" && arr[10] != undefined && arr[10] != "" && arr[10] != "NULL")
 	  {
 	  var arr1 = arr[8].split(",");
       console.log("Last name:" + arr1[0]);
       console.log("First name:" + arr1[1]);
 
-	  var content = "First name is " +arr1[1]+ ", Last name is " +arr1[0];
+	  var content = "First name is " +arr1[1]+ ", Last name is " +arr1[0]+ " and Address is " +arr[10];
 
       // Write out the JSON output of the Vision API
        //res.write(JSON.stringify(jsonObj.textAnnotations, null, 4));
@@ -77,6 +79,12 @@ vision.detect(image_url, types, function(err, detections, apiResponse) {
       //res.end('</body></html>');
 	  
 	  }
+	  
+	  else
+	  {
+	  var content = "\n\nUnfortunately, we could not read some info. Please try to upload a straight and clear picture again.";
+	  }
+	  
       res.write(content, null, 4);
 	  
       res.end();
