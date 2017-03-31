@@ -58,7 +58,7 @@ vision.detect(image_url, types, function(err, detections, apiResponse) {
       var text_output = texts.replace(/\\n/g, '\n\n');	  
       text_output = '\n\n'+text_output;   
 	  var arr = text_output.split("MIDDLE NAME");
-	  if(arr[1] == undefined || arr[1] == "" || arr[1] == NULL)
+	  if(arr[1] == undefined || arr[1] == "" || arr[1] == "NULL")
 	  {
 	  var arr = text_output.split("MIDDLE");		  
 	  }
