@@ -52,6 +52,10 @@ vision.detect(image_url, types, function(err, detections, apiResponse) {
       var texts = JSON.stringify(apiResponse.responses[0].textAnnotations[0].description);
       var text_output = texts.replace(/\\n/g, '\n\n');	  
       text_output = '\n\n'+text_output;   
+	  var arr = text_output.split("MIDDLE NAME");
+      console.log("Splitted text:" + arr[1]);	  
+	  var arr1 = arr[1].split("ADDRESS");
+      console.log("Splitted text1:" + arr1[0]);
       var textsHtmlwithoutQuotes = texts.replace(/"/g, '');
       var textWithNextline = textsHtmlwithoutQuotes.replace(/\\n/g, '</br>');
       console.log("Check texts ::>>" + textWithNextline);
@@ -62,7 +66,7 @@ vision.detect(image_url, types, function(err, detections, apiResponse) {
 
       //res.end('</body></html>');
 	  
-      res.write(text_output, null, 4);
+      res.write(arr1[0], null, 4);
 
       res.end();
     }	
