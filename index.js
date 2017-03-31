@@ -55,19 +55,19 @@ vision.detect(image_url, types, function(err, detections, apiResponse) {
       
 	  console.log("Check texts ::>>" + textWithNextline);
 	  
-      var text_output = texts.replace(/\\n/g, '\n\n');	  
-      text_output = '\n\n'+text_output;   
-	  var arr = text_output.split("MIDDLE NAME");
-	  if(arr[1] == undefined || arr[1] == "" || arr[1] == "NULL")
-	  {
-	  var arr = text_output.split("MDDLE NAME");		  
-	  }	  
-      console.log("Splitted text:" + arr[1]);	  
+      //var text_output = texts.replace(/\\n/g, '\n\n');	  
+      //text_output = '\n\n'+text_output;   
+	  var arr = textWithNextline.split("</br>");
+
+      console.log("Splitted text:" + arr[7]);	  
 	  
-	  if(arr[1] != undefined && arr[1] != "" && arr[1] != "NULL")
+	  if(arr[7] != undefined && arr[7] != "" && arr[7] != "NULL")
 	  {
-	  var arr1 = arr[1].split("ADDRESS");
-      console.log("Splitted text1:" + arr1[0]);
+	  var arr1 = arr[7].split(",");
+      console.log("Last name:" + arr1[0]);
+      console.log("First name:" + arr1[1]);
+
+	  var content = "First name is " +arr1[1]+ ", Last name is " +arr1[0];
 
       // Write out the JSON output of the Vision API
        //res.write(JSON.stringify(jsonObj.textAnnotations, null, 4));
@@ -76,8 +76,9 @@ vision.detect(image_url, types, function(err, detections, apiResponse) {
 
       //res.end('</body></html>');
 	  
-      res.write(arr1[0], null, 4);
-	  }	
+	  }
+      res.write(content, null, 4);
+	  
       res.end();
     }	
 
