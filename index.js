@@ -58,6 +58,10 @@ vision.detect(image_url, types, function(err, detections, apiResponse) {
       var text_output = texts.replace(/\\n/g, '\n\n');	  
       text_output = '\n\n'+text_output;   
 	  var arr = text_output.split("MIDDLE NAME");
+	  if(arr[1] == undefined || arr[1] == "" || arr[1] == NULL)
+	  {
+	  var arr = text_output.split("MIDDLE");		  
+	  }
       console.log("Splitted text:" + arr[1]);	  
 	  var arr1 = arr[1].split("ADDRESS");
       console.log("Splitted text1:" + arr1[0]);
