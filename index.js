@@ -60,6 +60,10 @@ vision.detect(image_url, types, function(err, detections, apiResponse) {
 	  var arr = text_output.split("MIDDLE NAME");
 	  if(arr[1] == undefined || arr[1] == "" || arr[1] == "NULL")
 	  {
+	  var arr = text_output.split("MDDLE NAME");		  
+	  }	  
+	  if(arr[1] == undefined || arr[1] == "" || arr[1] == "NULL")
+	  {
 	  var arr = text_output.split("MIDDLE");		  
 	  }
 	  if(arr[1] == undefined || arr[1] == "" || arr[1] == "NULL")
@@ -67,6 +71,9 @@ vision.detect(image_url, types, function(err, detections, apiResponse) {
 	  var arr = text_output.split("MDDLE");		  
 	  }
       console.log("Splitted text:" + arr[1]);	  
+	  
+	  if(arr[1] != undefined && arr[1] != "" && arr[1] != "NULL")
+	  {
 	  var arr1 = arr[1].split("ADDRESS");
       console.log("Splitted text1:" + arr1[0]);
 
@@ -78,7 +85,7 @@ vision.detect(image_url, types, function(err, detections, apiResponse) {
       //res.end('</body></html>');
 	  
       res.write(arr1[0], null, 4);
-
+	  }	
       res.end();
     }	
 
