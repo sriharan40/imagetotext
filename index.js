@@ -59,11 +59,11 @@ vision.detect(image_url, types, function(err, detections, apiResponse) {
       //text_output = '\n\n'+text_output;   
 	  var arr = textWithNextline.split("</br>");
 
-      console.log("Splitted text:" + arr[7]);	  
+      console.log("Splitted text:" + arr[8]);	  
 	  
-	  if(arr[7] != undefined && arr[7] != "" && arr[7] != "NULL")
+	  if(arr[8] != undefined && arr[8] != "" && arr[8] != "NULL")
 	  {
-	  var arr1 = arr[7].split(",");
+	  var arr1 = arr[8].split(",");
       console.log("Last name:" + arr1[0]);
       console.log("First name:" + arr1[1]);
 
