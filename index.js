@@ -62,14 +62,6 @@ vision.detect(image_url, types, function(err, detections, apiResponse) {
 	  {
 	  var arr = text_output.split("MDDLE NAME");		  
 	  }	  
-	  if(arr[1] == undefined || arr[1] == "" || arr[1] == "NULL")
-	  {
-	  var arr = text_output.split("MIDDLE");		  
-	  }
-	  if(arr[1] == undefined || arr[1] == "" || arr[1] == "NULL")
-	  {
-	  var arr = text_output.split("MDDLE");		  
-	  }
       console.log("Splitted text:" + arr[1]);	  
 	  
 	  if(arr[1] != undefined && arr[1] != "" && arr[1] != "NULL")
