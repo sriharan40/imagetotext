@@ -55,7 +55,7 @@ vision.detect(image_url, types, function(err, detections, apiResponse) {
       
 	  console.log("Check texts ::>>" + textWithNextline);
 
-var theerror = textWithNextline.match(/error code: [0-9]/g);
+var theerror = textWithNextline.match(/error code: [0-9][0-9][0-9]/g);
 
 //var thenum = textWithNextline.match(/[0-9]/g);
 
@@ -87,7 +87,8 @@ console.log("Error text:" + msg);
 //{	  
 //var content = "First name is " +arr1[1]+ ", Last name is " +arr1[0]+ " and Address is " +arr[10];
 //}
-if(theerror && thenum)
+
+if(theerror)
 {
 var content = msg;	
 }
