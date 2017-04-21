@@ -55,15 +55,17 @@ vision.detect(image_url, types, function(err, detections, apiResponse) {
       
 	  console.log("Check texts ::>>" + textWithNextline);
 
-var theerror = textWithNextline.match(/error/g);
+var theerror = textWithNextline.match(/error code: [0-9]/g);
 
-var thenum = textWithNextline.match(/[0-9]/g);
+//var thenum = textWithNextline.match(/[0-9]/g);
 
-thenum = thenum.toString();
+//thenum = thenum.toString();
 
-thenum = thenum.replace(/\,/g,"");
+//thenum = thenum.replace(/\,/g,"");
 
-var msg = theerror + " " + thenum;
+//var msg = theerror + " " + thenum;
+
+var msg = theerror;
 
 console.log("Error text:" + msg);	  
 
