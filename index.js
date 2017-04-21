@@ -64,7 +64,9 @@ thenum = thenum.toString();
 thenum = thenum.replace(/\,/g,"");
 
 var msg = theerror + " " + thenum;
-	    
+
+console.log("Error text:" + msg);	  
+
       //var text_output = texts.replace(/\\n/g, '\n\n');	  
       //text_output = '\n\n'+text_output;   
 	//  var arr = textWithNextline.split("</br>");
