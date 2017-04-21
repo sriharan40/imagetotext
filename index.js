@@ -57,24 +57,23 @@ vision.detect(image_url, types, function(err, detections, apiResponse) {
 
 var theerror = textWithNextline.match(/error code: [0-9][0-9][0-9]/g);
 
-console.log("The error :" + theerror);	  
-
 if(theerror == "" || theerror == "null" || theerror == null)
 {
 var theerror = textWithNextline.match(/error ([0-9][0-9][0-9])/g);	
-console.log("Error :" + theerror);	  
 }
 
-if(theerror == "" || theerror == "null")
+if(theerror == "" || theerror == "null" || theerror == null)
 {
 var theerror = textWithNextline.match(/error : [0-9][0-9][0-9]/g);	
 }
 
 
-if(theerror == "" || theerror == "null")
+if(theerror == "" || theerror == "null" || theerror == null)
 {
 var theerror = textWithNextline.match(/error [0-9][0-9][0-9]/g);	
 }
+
+console.log("The error :" + theerror);	  
 
 //var thenum = textWithNextline.match(/[0-9]/g);
 
@@ -83,8 +82,12 @@ var theerror = textWithNextline.match(/error [0-9][0-9][0-9]/g);
 //thenum = thenum.replace(/\,/g,"");
 
 //var msg = theerror + " " + thenum;
+var msg;
 
-var msg = theerror.toString();
+if(theerror != "" || theerror != "null" || theerror != null)
+{
+msg = theerror.toString();
+}
 
 console.log("Error text:" + msg);	  
 
