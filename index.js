@@ -59,13 +59,15 @@ var theerror = textWithNextline.match(/error code: [0-9][0-9][0-9]/g);
 
 if(theerror == "" || theerror == "null")
 {
-var theerror = textWithNextline.match(/error : [0-9][0-9][0-9]/g);	
+var theerror = textWithNextline.match(/error ([0-9][0-9][0-9])/g);	
+console.log("Error :" + theerror);	  
 }
 
 if(theerror == "" || theerror == "null")
 {
-var theerror = textWithNextline.match(/error ([0-9][0-9][0-9])/g);	
+var theerror = textWithNextline.match(/error : [0-9][0-9][0-9]/g);	
 }
+
 
 if(theerror == "" || theerror == "null")
 {
@@ -80,7 +82,7 @@ var theerror = textWithNextline.match(/error [0-9][0-9][0-9]/g);
 
 //var msg = theerror + " " + thenum;
 
-var msg = theerror;
+var msg = theerror.toString();
 
 console.log("Error text:" + msg);	  
 
