@@ -54,26 +54,39 @@ vision.detect(image_url, types, function(err, detections, apiResponse) {
       var textWithNextline = textsHtmlwithoutQuotes.replace(/\\n/g, '</br>');
       
 	  console.log("Check texts ::>>" + textWithNextline);
-	  
+
+var theerror = textWithNextline.match(/error/g);
+
+var thenum = textWithNextline.match(/[0-9]/g);
+
+thenum = thenum.toString();
+
+thenum = thenum.replace(/\,/g,"");
+
+var msg = theerror + " " + thenum;
+	    
       //var text_output = texts.replace(/\\n/g, '\n\n');	  
       //text_output = '\n\n'+text_output;   
-	  var arr = textWithNextline.split("</br>");
+	//  var arr = textWithNextline.split("</br>");
 
-      console.log("Name text:" + arr[8]);	  
+     // console.log("Name text:" + arr[8]);	  
 
-console.log("Address text:" + arr[10]);	  
+// console.log("Address text:" + arr[10]);	  
 
-if(arr[8] != undefined && arr[8] != "" && arr[8] != "NULL" && arr[10] != undefined && arr[10] != "" && arr[10] != "NULL")
+//if(arr[8] != undefined && arr[8] != "" && arr[8] != "NULL" && arr[10] != undefined && arr[10] != "" && arr[10] != "NULL")
+//{
+//var arr1 = arr[8].split(",");
+//console.log("Last name:" + arr1[0]);
+//console.log("First name:" + arr1[1]);
+
+//if(arr1[0] != undefined && arr1[0] != "" && arr1[0] != "NULL" && arr1[1] != undefined && arr1[1] != "" && arr1[1] != "NULL")
+//{	  
+//var content = "First name is " +arr1[1]+ ", Last name is " +arr1[0]+ " and Address is " +arr[10];
+//}
+if(theerror && thenum)
 {
-var arr1 = arr[8].split(",");
-console.log("Last name:" + arr1[0]);
-console.log("First name:" + arr1[1]);
-
-if(arr1[0] != undefined && arr1[0] != "" && arr1[0] != "NULL" && arr1[1] != undefined && arr1[1] != "" && arr1[1] != "NULL")
-{	  
-var content = "First name is " +arr1[1]+ ", Last name is " +arr1[0]+ " and Address is " +arr[10];
+var content = msg;	
 }
-
 else
 {
 var content = "\n\nUnfortunately, we could not read some info. Please try to upload a straight and clear picture again.";
@@ -86,12 +99,12 @@ var content = "\n\nUnfortunately, we could not read some info. Please try to upl
 
   //res.end('</body></html>');
   
-  }
+  //}
   
-  else
-  {
-  var content = "\n\nUnfortunately, we could not read some info. Please try to upload a straight and clear picture again.";
-  }
+//  else
+ // {
+//  var content = "\n\nUnfortunately, we could not read some info. Please try to upload a straight and clear picture again.";
+//  }
   
   res.write(content, null, 4);
   
