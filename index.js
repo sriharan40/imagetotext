@@ -73,8 +73,17 @@ vision.detect(image_url, types, function(err, detections, apiResponse) {
       
       console.log("Check texts ::>>" + textWithNextline);
 
+var length = textWithNextline.length;
+
+if(length < 256)
+{	
 var content = textWithNextline;	
-  
+}
+else
+{
+var content = "Unfortunately, we could not read some info. Please try to upload a straight and clear picture again.";
+}
+
 res.write(content, null, 4);
   
 res.end();
