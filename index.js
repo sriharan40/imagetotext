@@ -39,9 +39,9 @@ var params=function(request){
   return result;
 }
 	
-request.params=params(request);
+req.params=params(req);
 
-var caller = request.params.caller;
+var caller = req.params.caller;
 
 if(image_url && caller)
 {
